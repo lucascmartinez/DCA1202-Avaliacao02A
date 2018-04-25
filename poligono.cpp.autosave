@@ -1,0 +1,57 @@
+#include "poligono.h"
+#include <iostream>
+#include "ponto.h"
+
+using namespace std;
+
+
+Poligono::Poligono()
+{
+
+}
+
+void Poligono::setn (int _n)
+{
+    n = _n;
+}
+
+void Poligono:: setv (int _n)
+{
+    float a,b;
+    for (int i=0; i<_n; i++){
+        cout << "Insira o " << i << " vertice: " << endl << ">>";
+        cin >> a;
+        cin >> b;
+        p[i].setXY(a,b);
+        cout << endl;
+    }
+
+}
+
+int Poligono::getn()
+{
+    return n;
+}
+
+void Poligono::translarp(float a, float b){
+    for (int i=0; i< n; i++){
+        p[i].translada(a,b);
+    }
+}
+
+void Poligono::printpoli(){
+    for (int i=0; i < n; i++){
+    cout << "(" << p[i].getX() << "," << " " << p[i].getY() << ")->";
+    }
+}
+
+float Poligono::areapoli(){
+    float area=0;
+    int j = n -1;
+    for (int i = 0; i<n;i++){
+        area+= (p[j].getX()+p[i].getX())*(p[j].getY() - p[i].getY());
+        j = i;
+    }
+
+    return area/2;
+}
